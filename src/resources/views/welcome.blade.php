@@ -600,14 +600,14 @@
                 <h2 class="fw-bold text-dark mb-3">Selamat Datang</h2>
                 <p class="text-muted mb-4">Silakan masuk untuk mengakses dashboard admin dan mulai mengelola platform.</p>
 
-                @if (Route::has('filament.admin.auth.login'))
+                @if (Route::has('filament.client.auth.login'))
                     <div class="d-grid mt-4">
                         @auth
-                            <a href="{{ route('filament.admin.pages.dashboard') }}" class="btn-admin">
+                            <a href="{{ route('filament.client.pages.dashboard') }}" class="btn-admin">
                                 <i class="bi bi-speedometer2"></i> Dashboard Admin
                             </a>
                         @else
-                            <a href="{{ route('filament.admin.auth.login') }}" class="btn-admin">
+                            <a href="{{ route('filament.client.auth.login') }}" class="btn-admin">
                                 <i class="bi bi-shield-lock-fill"></i> Masuk ke Admin
                             </a>
                         @endauth

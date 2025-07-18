@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Policies\ActivityPolicy;
+use App\Http\Responses\LoginResponse;
 use Filament\Actions\MountableAction;
 use Filament\Notifications\Livewire\Notifications;
 use Filament\Notifications\Notification;
@@ -19,9 +20,13 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Register any application services.
      */
+    public $singletons = [
+        \Filament\Http\Responses\Auth\Contracts\LoginResponse::class => LoginResponse::class,
+    ];
+
     public function register(): void
     {
-        //
+        
     }
 
     /**
@@ -43,4 +48,6 @@ class AppServiceProvider extends ServiceProvider
             $action->modalFooterActionsAlignment(Alignment::Right);
         });
     }
+
+
 }
