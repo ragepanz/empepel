@@ -33,7 +33,6 @@ class ClientPanelProvider extends PanelProvider
             ->profile()
             ->authGuard('web')
             ->maxContentWidth('full')
-            ->spa()
             ->colors([
                 'primary' => Color::Amber,
             ])

@@ -67,7 +67,11 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return match ($panel->getId()) {
+            'admin' => $this->hasRole('super_admin'),
+            'client' => $this->hasRole('client'),
+            default => false,
+        };
     }
 
     public function orders(): HasMany

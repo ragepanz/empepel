@@ -51,5 +51,5 @@ Route::middleware(['auth'])->prefix('client')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::fallback(function () {
-    return redirect()->route('filament.client.pages.dashboard');
-})->middleware(['auth']);
+    return redirect()->route('welcome');
+});
