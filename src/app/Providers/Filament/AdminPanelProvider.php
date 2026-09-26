@@ -49,16 +49,11 @@ class AdminPanelProvider extends PanelProvider
                 \Filament\View\PanelsRenderHook::HEAD_END,
                 fn () => view('filament.admin.login-styles'),
             )
-            ->renderHook(
-                \Filament\View\PanelsRenderHook::BODY_END,
-                fn () => view('filament.admin.instant-navigation'),
-            )
             ->colors([
                 'primary' => Color::Blue,
             ])
             ->maxContentWidth(MaxWidth::SevenExtraLarge)
             ->sidebarCollapsibleOnDesktop()
-            ->spa()
             ->discoverResources(in: app_path('Filament/Admin/Resources'), for: 'App\\Filament\\Admin\\Resources')
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([
