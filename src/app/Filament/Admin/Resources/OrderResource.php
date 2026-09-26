@@ -159,6 +159,7 @@ class OrderResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => $query->with(['user', 'vehicle']))
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('Pelanggan')
@@ -426,9 +427,15 @@ class OrderResource extends Resource
         ];
     }
 
+    protected static ?string $cachedBadge = null;
+
     public static function getNavigationBadge(): ?string
     {
-        return (string) \Illuminate\Support\Facades\Cache::remember('nav_badge_orders_pending_count', 30, fn () => static::getModel()::where('status', 'proses')->count());
+        return static::$cachedBadge ??= (string) \Illuminate\Support\Facades\Cache::remember(
+            'nav_badge_orders_pending_count',
+            300,
+            fn () => static::getModel()::where('status', 'proses')->count()
+        );
     }
 
     public static function getNavigationBadgeColor(): string|array|null

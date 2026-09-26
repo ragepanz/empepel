@@ -159,9 +159,15 @@ class VehicleResource extends Resource
         ];
     }
     
+    protected static ?string $cachedBadge = null;
+
     public static function getNavigationBadge(): ?string
     {
-        return (string) \Illuminate\Support\Facades\Cache::remember('nav_badge_vehicles_count', 30, fn () => static::getModel()::count());
+        return static::$cachedBadge ??= (string) \Illuminate\Support\Facades\Cache::remember(
+            'nav_badge_vehicles_count',
+            300,
+            fn () => static::getModel()::count()
+        );
     }
     
     public static function getNavigationBadgeColor(): string|array|null

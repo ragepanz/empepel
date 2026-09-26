@@ -54,7 +54,7 @@ class SalesReportResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn (Builder $query) => $query->whereHas('order', fn ($q) => $q->where('status', 'dibayar')))
+            ->modifyQueryUsing(fn (Builder $query) => $query->with(['order.vehicle', 'order.user'])->whereHas('order', fn ($q) => $q->where('status', 'dibayar')))
             ->columns([
                 Tables\Columns\TextColumn::make('order.id')
                     ->label('ID Pesanan')

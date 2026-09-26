@@ -24,9 +24,15 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = -2;
 
+    protected static ?string $cachedBadge = null;
+
     public static function getNavigationBadge(): ?string
     {
-        return (string) \Illuminate\Support\Facades\Cache::remember('nav_badge_users_count', 30, fn () => static::getModel()::count());
+        return static::$cachedBadge ??= (string) \Illuminate\Support\Facades\Cache::remember(
+            'nav_badge_users_count',
+            300,
+            fn () => static::getModel()::count()
+        );
     }
 
     public static function getGloballySearchableAttributes(): array
@@ -98,6 +104,7 @@ class UserResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->modifyQueryUsing(fn (\Illuminate\Database\Eloquent\Builder $query) => $query->with('roles'))
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->sortable()
