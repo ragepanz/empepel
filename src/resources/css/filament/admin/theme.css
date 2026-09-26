@@ -9,58 +9,108 @@
     width: calc(33.3% - 0.5em);
 }
 
+/* Luxury Modern Executive Login Theme for MobilQuick */
 .fi-login-page {
-    background: #090d16;
-}
-
-.custom-auth-wrapper {
+    position: relative;
+    background: radial-gradient(circle at 15% 15%, #1e293b 0%, #0f172a 45%, #020617 100%) !important;
     min-height: 100vh;
 }
 
-.custom-auth-empty-panel {
-    background: #030712 !important;
+.fi-login-page::before {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(37, 99, 235, 0.22) 0%, rgba(37, 99, 235, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
 }
 
-.custom-auth-form-panel {
-    background: #ffffff;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+.fi-login-page::after {
+    content: '';
+    position: fixed;
+    bottom: -20%;
+    right: -10%;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(234, 179, 8, 0.15) 0%, rgba(234, 179, 8, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
 }
 
-.dark .custom-auth-form-panel {
-    background: #0f172a;
-    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
+.fi-login-page .fi-simple-main {
+    position: relative;
+    z-index: 10;
+    max-width: 29rem;
+    margin: auto;
 }
 
-.custom-auth-form-panel .fi-simple-main-ctn {
-    border: none;
-    box-shadow: none;
-    background: transparent;
-    padding: 0;
+.fi-login-page .fi-simple-main-ctn {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 1.25rem;
+    box-shadow: 0 25px 50px -12px rgba(2, 6, 23, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+    padding: 2.5rem 2.25rem;
 }
 
-.custom-auth-form-panel .fi-simple-header-heading {
-    font-size: 1.65rem;
+.dark .fi-login-page .fi-simple-main-ctn {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.fi-login-page .fi-simple-header {
+    margin-bottom: 1.5rem;
+}
+
+.fi-login-page .fi-simple-header-heading {
+    font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: -0.025em;
     color: #0f172a;
+    margin-top: 0.75rem;
 }
 
-.dark .custom-auth-form-panel .fi-simple-header-heading {
-    color: #ffffff;
+.dark .fi-login-page .fi-simple-header-heading {
+    color: #f8fafc;
 }
 
-.custom-auth-form-panel .fi-btn {
+.fi-login-page .fi-simple-header-subheading {
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+.dark .fi-login-page .fi-simple-header-subheading {
+    color: #94a3b8;
+}
+
+.fi-login-page .fi-btn {
     border-radius: 0.625rem;
     font-weight: 700;
-    transition: all 0.2s ease;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+    border: none;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.custom-auth-form-panel .fi-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+.fi-login-page .fi-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.45);
 }
 
-.custom-auth-form-panel .fi-input {
+.fi-login-page .fi-input {
     border-radius: 0.625rem;
+    border-color: #cbd5e1;
+    transition: all 0.15s ease-in-out;
 }
 
+.fi-login-page .fi-input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}

@@ -92,11 +92,6 @@ class AdminPanelProvider extends PanelProvider
                     ]),
                 \Hasnayeen\Themes\ThemesPlugin::make(),
                 \Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin::make()->color('#29b'),
-                \DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin::make()
-                    ->showEmptyPanelOnMobile(false)
-                    ->formPanelPosition('right')
-                    ->formPanelWidth('42%')
-                    ->emptyPanelView('filament.auth.admin-login-showcase'),
                 \Awcodes\LightSwitch\LightSwitchPlugin::make()
                     ->position(\Awcodes\LightSwitch\Enums\Alignment::BottomCenter)
                     ->enabledOn([
