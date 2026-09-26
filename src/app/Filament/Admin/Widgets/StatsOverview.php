@@ -11,7 +11,6 @@ use Filament\Widgets\StatsOverviewWidget\Stat;
 
 class StatsOverview extends BaseWidget
 {
-    protected static bool $isLazy = true;
     protected static ?string $pollingInterval = null;
 
     protected function getStats(): array
