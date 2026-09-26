@@ -33,8 +33,8 @@ class ClientPanelProvider extends PanelProvider
             ->profile()
             ->authGuard('web')
             ->brandName('MobilQuick')
-            ->brandLogo(asset('images/bg.png'))
-            ->brandLogoHeight('3.25rem')
+            ->brandLogo(fn () => view('filament.components.brand-logo'))
+            ->brandLogoHeight('3.5rem')
             ->maxContentWidth('full')
             ->colors([
                 'primary' => Color::Amber,

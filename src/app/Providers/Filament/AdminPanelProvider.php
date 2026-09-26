@@ -42,8 +42,8 @@ class AdminPanelProvider extends PanelProvider
             ->profile(\App\Filament\Pages\Auth\EditProfile::class, isSimple: false)
             ->defaultThemeMode(ThemeMode::Light)
             ->brandName('MobilQuick')
-            ->brandLogo(asset('images/bg.png'))
-            ->brandLogoHeight('3.25rem')
+            ->brandLogo(fn () => view('filament.components.brand-logo'))
+            ->brandLogoHeight('3.5rem')
             ->favicon(asset('images/bg.png'))
             ->colors([
                 'primary' => Color::Blue,
