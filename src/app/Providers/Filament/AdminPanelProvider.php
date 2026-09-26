@@ -67,7 +67,20 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationGroups([
                 NavigationGroup::make()
-                    ->label('Administration'),
+                    ->label('Transaksi')
+                    ->icon('heroicon-o-shopping-bag'),
+                NavigationGroup::make()
+                    ->label('Inventaris')
+                    ->icon('heroicon-o-truck'),
+                NavigationGroup::make()
+                    ->label('Keuangan')
+                    ->icon('heroicon-o-banknotes'),
+                NavigationGroup::make()
+                    ->label('Laporan')
+                    ->icon('heroicon-o-chart-bar'),
+                NavigationGroup::make()
+                    ->label('Administration')
+                    ->icon('heroicon-o-cog-6-tooth'),
             ])
             ->userMenuItems([
                 'profile' => MenuItem::make()

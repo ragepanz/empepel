@@ -250,15 +250,28 @@ class OrderResource extends Resource
                     ->icon('heroicon-o-check-circle')
                     ->color('success')
                     ->visible(fn(Order $record): bool => $record->status === 'proses')
+                    ->modalHeading('Verifikasi Pembayaran')
+                    ->modalDescription(fn (Order $record): string => "Konfirmasi penerimaan pembayaran untuk pesanan #{$record->id} sebesar Rp " . number_format($record->total_harga, 0, ',', '.') . "? Stok kendaraan akan otomatis berkurang.")
                     ->action(function (Order $record): void {
                         $record->update([
                             'status' => 'dibayar',
                             'payment_verified_at' => now(),
                         ]);
 
+                        // Kurangi stok kendaraan jika ada
+                        if ($record->vehicle && $record->vehicle->stok > 0) {
+                            $record->vehicle->decrement('stok');
+                        }
+
+                        // Otomatis catat laporan penjualan
+                        \App\Models\SalesReport::firstOrCreate(
+                            ['order_id' => $record->id],
+                            ['keterangan' => 'Penjualan terverifikasi via Admin Panel']
+                        );
+
                         Notification::make()
                             ->title('Pembayaran Diverifikasi')
-                            ->body('Pembayaran telah berhasil diverifikasi')
+                            ->body('Pembayaran berhasil diverifikasi, stok kendaraan diperbarui, dan laporan penjualan tercatat.')
                             ->success()
                             ->send();
                     })
@@ -289,9 +302,17 @@ class OrderResource extends Resource
                     })
                     ->requiresConfirmation(),
 
+                Tables\Actions\Action::make('preview_invoice')
+                    ->label('Preview Invoice')
+                    ->icon('heroicon-o-eye')
+                    ->color('info')
+                    ->visible(fn(Order $record): bool => $record->status === 'dibayar')
+                    ->url(fn (Order $record): string => route('invoice.preview', $record))
+                    ->openUrlInNewTab(),
+
                 Tables\Actions\Action::make('print_invoice')
-                    ->label('Cetak Invoice')
-                    ->icon('heroicon-o-printer')
+                    ->label('Unduh Invoice')
+                    ->icon('heroicon-o-arrow-down-tray')
                     ->color('success')
                     ->visible(fn(Order $record): bool => $record->status === 'dibayar')
                     ->url(fn (Order $record): string => route('invoice.download', $record))

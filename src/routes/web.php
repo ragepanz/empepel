@@ -16,13 +16,31 @@ Route::get('/', function () {
 
 /*
 |--------------------------------------------------------------------------
-| Client Panel Routes
+| Smart Login Redirect
 |--------------------------------------------------------------------------
 */
-Route::middleware(['auth'])->prefix('client')->group(function () {
-    Route::get('/invoice/{order}', [InvoiceController::class, 'download'])
-     ->name('invoice.download');
-    
+Route::get('/login', function () {
+    if (auth()->check()) {
+        return auth()->user()->hasRole('super_admin') 
+            ? redirect('/admin') 
+            : redirect('/client');
+    }
+    return redirect('/admin/login');
+})->name('login');
+
+/*
+|--------------------------------------------------------------------------
+| Invoice Routes (Accessible by Admin and Customer)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+    Route::get('/invoice/{order}/download', [InvoiceController::class, 'download'])
+        ->name('invoice.download');
+    Route::get('/invoice/{order}/preview', [InvoiceController::class, 'preview'])
+        ->name('invoice.preview');
+
+    // Compatibility route for existing links
+    Route::get('/client/invoice/{order}', [InvoiceController::class, 'download']);
 });
 
 /*
