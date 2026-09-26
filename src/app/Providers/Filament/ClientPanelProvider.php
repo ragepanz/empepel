@@ -36,6 +36,7 @@ class ClientPanelProvider extends PanelProvider
             ->brandLogo(fn () => view('filament.components.brand-logo'))
             ->brandLogoHeight('3.5rem')
             ->maxContentWidth('full')
+            ->spa()
             ->colors([
                 'primary' => Color::Amber,
             ])

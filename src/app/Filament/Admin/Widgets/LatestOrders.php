@@ -10,6 +10,8 @@ use Filament\Widgets\TableWidget;
 
 class LatestOrders extends TableWidget
 {
+    protected static bool $isLazy = true;
+
     protected static ?int $sort = 2;
 
     protected static ?string $pollingInterval = null;
