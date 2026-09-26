@@ -32,6 +32,9 @@ class ClientPanelProvider extends PanelProvider
             ->emailVerification()
             ->profile()
             ->authGuard('web')
+            ->brandName('MobilQuick')
+            ->brandLogo(asset('images/bg.png'))
+            ->brandLogoHeight('3.25rem')
             ->maxContentWidth('full')
             ->colors([
                 'primary' => Color::Amber,
@@ -64,7 +67,7 @@ class ClientPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->favicon(asset('images/logo.jpg'))
+            ->favicon(asset('images/bg.png'))
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->darkMode(false)
             ->authMiddleware([

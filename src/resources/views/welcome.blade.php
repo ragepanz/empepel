@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Mobility Market - Platform jual beli mobil terpercaya">
-    <title>Jual Beli Mobiwww | Platform Jual Beli Mobil</title>
+    <meta name="description" content="MobilQuick - Platform Jual Beli Mobil Bekas Mudah & Cepat">
+    <title>MobilQuick | Jual Beli Mobil Bekas Mudah & Cepat</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="{{ asset('images/logo.jpg') }}" type="image/jpg">
+    <link rel="icon" href="{{ asset('images/bg.png') }}" type="image/png">
 
     <!-- Bootstrap CSS & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -594,7 +594,7 @@
         <div class="card card-custom">
             <div class="card-body text-center">
                 <div class="logo">
-                    <img src="{{ asset('images/logo.jpg') }}" alt="Jual Beli Mobiwww Logo">
+                    <img src="{{ asset('images/bg.png') }}" alt="MobilQuick Logo">
                 </div>
                 
                 <h2 class="fw-bold text-dark mb-3">Selamat Datang</h2>
@@ -617,7 +617,7 @@
         </div>
         
         <div class="mt-4 text-center">
-            <p class="text-muted small">© 2021 Mobility Market. All rights reserved.</p>
+            <p class="text-muted small">© 2026 MobilQuick. All rights reserved.</p>
         </div>
     </div>
 

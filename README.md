@@ -1,6 +1,6 @@
-# Empepel — Aplikasi Jual Beli Mobil
+# MobilQuick — Platform Jual Beli Mobil Bekas Mudah & Cepat
 
-Empepel adalah aplikasi web sederhana untuk **jual beli mobil**, yang memungkinkan pengguna melihat daftar mobil, detail kendaraan, serta informasi terkait penjualan.
+MobilQuick adalah aplikasi web untuk **jual beli mobil**, yang memungkinkan pengguna melihat daftar mobil, detail kendaraan, serta informasi terkait penjualan.
 
 Aplikasi ini dibangun sebagai web application berbasis **PHP** dan dijalankan menggunakan **Docker** dengan **Nginx** sebagai web server.
 

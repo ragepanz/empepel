@@ -41,10 +41,10 @@ class AdminPanelProvider extends PanelProvider
             ->passwordReset()
             ->profile(\App\Filament\Pages\Auth\EditProfile::class, isSimple: false)
             ->defaultThemeMode(ThemeMode::Light)
-            ->font('Montserrat')
-            ->brandName('Jual Beli Mobil')
-            ->brandLogo(asset('images/logo.jpg'))
-            ->brandLogoHeight('2.75rem')
+            ->brandName('MobilQuick')
+            ->brandLogo(asset('images/bg.png'))
+            ->brandLogoHeight('3.25rem')
+            ->favicon(asset('images/bg.png'))
             ->colors([
                 'primary' => Color::Blue,
             ])
