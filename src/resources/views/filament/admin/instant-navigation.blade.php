@@ -1,40 +1,61 @@
+<style>
+/* Hilangkan seluruh animasi loading bar dan spinner di panel agar navigasi terasa instan murni */
+#nprogress,
+.nprogress-busy,
+.nprogress-container,
+.fi-loading-indicator,
+.fi-topbar-loading-indicator,
+[wire\:loading],
+[wire\:loading\.delay] {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Transisi konten halaman instan dan mulus */
+.fi-main {
+    transition: opacity 0.08s ease-in-out;
+}
+</style>
+
 <script>
-/**
- * Instant SPA Navigation with Hover Prefetching
- * Memungkinkan navigasi sidebar instan (0 detik) saat diklik karena data sudah di-prefetch saat mouse hover.
- */
 (function() {
-    function initHoverPrefetch() {
-        const links = document.querySelectorAll('.fi-sidebar a[href], .fi-topbar a[href]');
-        links.forEach(function(link) {
-            const href = link.getAttribute('href');
-            if (href && !href.startsWith('#') && !href.startsWith('javascript:') && !link.hasAttribute('wire:navigate.hover')) {
-                link.setAttribute('wire:navigate.hover', '');
-            }
-        });
+    // Nonaktifkan NProgress jika ada agar tidak memunculkan bar loading
+    if (window.NProgress) {
+        window.NProgress.configure({ showSpinner: false, minimum: 1 });
+        window.NProgress.start = function() {};
+        window.NProgress.done = function() {};
     }
 
-    // Prefetch link saat kursor diarahkan ke menu sidebar (hover)
+    // Prefetching agresif saat kursor menyentuh menu sidebar
+    const prefetchedUrls = new Set();
+    
+    function prefetchUrl(url) {
+        if (!url || url.startsWith('#') || url.startsWith('javascript:') || url === window.location.href || prefetchedUrls.has(url)) {
+            return;
+        }
+        prefetchedUrls.add(url);
+        
+        // Browser speculative prefetch
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        link.as = 'document';
+        document.head.appendChild(link);
+
+        if (window.fetch) {
+            fetch(url, { priority: 'low', credentials: 'same-origin' }).catch(function() {});
+        }
+    }
+
     document.addEventListener('mouseover', function(e) {
-        const link = e.target.closest('.fi-sidebar a[href], .fi-topbar a[href]');
-        if (!link) return;
-        const href = link.getAttribute('href');
-        if (!href || href.startsWith('#') || href.startsWith('javascript:') || href === window.location.href) return;
-        if (link.dataset.hasPrefetched) return;
-
-        link.dataset.hasPrefetched = 'true';
-
-        // Browser link prefetch
-        const prefetcher = document.createElement('link');
-        prefetcher.rel = 'prefetch';
-        prefetcher.href = href;
-        prefetcher.as = 'document';
-        document.head.appendChild(prefetcher);
+        const target = e.target.closest('.fi-sidebar a[href], .fi-topbar a[href]');
+        if (target) {
+            prefetchUrl(target.getAttribute('href'));
+        }
     }, { passive: true });
-
-    // Inisialisasi saat load dan setiap selesai SPA navigation
-    document.addEventListener('DOMContentLoaded', initHoverPrefetch);
-    document.addEventListener('livewire:navigated', initHoverPrefetch);
-    document.addEventListener('alpine:init', initHoverPrefetch);
 })();
 </script>
