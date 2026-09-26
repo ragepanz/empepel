@@ -10,42 +10,57 @@
 }
 
 .fi-login-page {
-    background: #f4f7fb;
+    background: #090d16;
 }
 
-.fi-login-page .fi-simple-main {
-    max-width: 28rem;
+.custom-auth-wrapper {
+    min-height: 100vh;
 }
 
-.fi-login-page .fi-simple-header {
-    gap: 0.5rem;
+.custom-auth-empty-panel {
+    background: #030712 !important;
 }
 
-.fi-login-page .fi-logo {
-    max-height: 3.25rem;
-}
-
-.fi-login-page .fi-simple-main-ctn {
-    border: 1px solid #e2e8f0;
-    border-radius: 1rem;
+.custom-auth-form-panel {
     background: #ffffff;
-    box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.08);
-    padding: 2rem;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
 }
 
-.fi-login-page .fi-btn {
-    border-radius: 0.625rem;
+.dark .custom-auth-form-panel {
+    background: #0f172a;
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.4);
 }
 
-.fi-login-page .fi-input {
-    border-radius: 0.625rem;
+.custom-auth-form-panel .fi-simple-main-ctn {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
 }
 
-.fi-login-page .fi-simple-header-heading {
+.custom-auth-form-panel .fi-simple-header-heading {
+    font-size: 1.65rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
     color: #0f172a;
-    font-weight: 700;
 }
 
-.fi-login-page .fi-simple-header-subheading {
-    color: #64748b;
+.dark .custom-auth-form-panel .fi-simple-header-heading {
+    color: #ffffff;
 }
+
+.custom-auth-form-panel .fi-btn {
+    border-radius: 0.625rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.custom-auth-form-panel .fi-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+}
+
+.custom-auth-form-panel .fi-input {
+    border-radius: 0.625rem;
+}
+
