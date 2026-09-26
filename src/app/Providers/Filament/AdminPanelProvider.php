@@ -49,6 +49,10 @@ class AdminPanelProvider extends PanelProvider
                 \Filament\View\PanelsRenderHook::HEAD_END,
                 fn () => view('filament.admin.login-styles'),
             )
+            ->renderHook(
+                \Filament\View\PanelsRenderHook::BODY_END,
+                fn () => view('filament.admin.instant-navigation'),
+            )
             ->colors([
                 'primary' => Color::Blue,
             ])
