@@ -102,10 +102,6 @@ class AdminPanelProvider extends PanelProvider
                         'auth.login',
                         'auth.password',
                     ]),
-                \Awcodes\Overlook\OverlookPlugin::make()
-                    ->includes([
-                        \App\Filament\Admin\Resources\UserResource::class,
-                    ]),
                 \Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin::make()
                     ->slug('my-profile')
                     ->setTitle('My Profile')
