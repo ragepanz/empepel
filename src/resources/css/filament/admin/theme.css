@@ -8,3 +8,44 @@
 .grid-image .filepond--item {
     width: calc(33.3% - 0.5em);
 }
+
+.fi-login-page {
+    background: #f4f7fb;
+}
+
+.fi-login-page .fi-simple-main {
+    max-width: 28rem;
+}
+
+.fi-login-page .fi-simple-header {
+    gap: 0.5rem;
+}
+
+.fi-login-page .fi-logo {
+    max-height: 3.25rem;
+}
+
+.fi-login-page .fi-simple-main-ctn {
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    background: #ffffff;
+    box-shadow: 0 1.5rem 3rem rgba(15, 23, 42, 0.08);
+    padding: 2rem;
+}
+
+.fi-login-page .fi-btn {
+    border-radius: 0.625rem;
+}
+
+.fi-login-page .fi-input {
+    border-radius: 0.625rem;
+}
+
+.fi-login-page .fi-simple-header-heading {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.fi-login-page .fi-simple-header-subheading {
+    color: #64748b;
+}

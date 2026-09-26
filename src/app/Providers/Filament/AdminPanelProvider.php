@@ -42,6 +42,9 @@ class AdminPanelProvider extends PanelProvider
             ->profile(\App\Filament\Pages\Auth\EditProfile::class, isSimple: false)
             ->defaultThemeMode(ThemeMode::Light)
             ->font('Montserrat')
+            ->brandName('Jual Beli Mobil')
+            ->brandLogo(asset('images/logo.jpg'))
+            ->brandLogoHeight('2.75rem')
             ->colors([
                 'primary' => Color::Blue,
             ])
@@ -89,12 +92,6 @@ class AdminPanelProvider extends PanelProvider
                     ]),
                 \Hasnayeen\Themes\ThemesPlugin::make(),
                 \Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin::make()->color('#29b'),
-                \DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin::make()
-                    ->showEmptyPanelOnMobile(false)
-                    ->formPanelPosition('right')
-                    ->formPanelWidth('40%')
-                    ->emptyPanelBackgroundImageOpacity('70%')
-                    ->emptyPanelBackgroundImageUrl('https://picsum.photos/seed/picsum/1260/750.webp/?blur=1'),
                 \Awcodes\LightSwitch\LightSwitchPlugin::make()
                     ->position(\Awcodes\LightSwitch\Enums\Alignment::BottomCenter)
                     ->enabledOn([
