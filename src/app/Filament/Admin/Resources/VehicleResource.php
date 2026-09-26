@@ -161,11 +161,11 @@ class VehicleResource extends Resource
     
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        return (string) \Illuminate\Support\Facades\Cache::remember('nav_badge_vehicles_count', 30, fn () => static::getModel()::count());
     }
     
     public static function getNavigationBadgeColor(): string|array|null
     {
-        return static::getModel()::count() < 10 ? 'warning' : 'primary';
+        return ((int) static::getNavigationBadge()) < 10 ? 'warning' : 'primary';
     }
 }

@@ -26,7 +26,7 @@ class UserResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::count();
+        return (string) \Illuminate\Support\Facades\Cache::remember('nav_badge_users_count', 30, fn () => static::getModel()::count());
     }
 
     public static function getGloballySearchableAttributes(): array

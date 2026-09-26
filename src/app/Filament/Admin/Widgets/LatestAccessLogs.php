@@ -50,7 +50,7 @@ class LatestAccessLogs extends BaseWidget
     {
         return $table
             ->query(
-                Activity::query()->latest()->take(5)
+                Activity::query()->with('causer')->latest()->take(5)
             )
             ->columns([
                 Tables\Columns\TextColumn::make('log_name')

@@ -407,7 +407,7 @@ class OrderResource extends Resource
 
     public static function getNavigationBadge(): ?string
     {
-        return static::getModel()::where('status', 'proses')->count();
+        return (string) \Illuminate\Support\Facades\Cache::remember('nav_badge_orders_pending_count', 30, fn () => static::getModel()::where('status', 'proses')->count());
     }
 
     public static function getNavigationBadgeColor(): string|array|null
